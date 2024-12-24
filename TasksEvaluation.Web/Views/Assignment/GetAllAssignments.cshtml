@@ -1,0 +1,48 @@
+﻿@using TasksEvaluation.Core.DTOs 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+@model IEnumerable<AssignmentDto> 
+@{
+	ViewData["Title"] = "All Assignments";
+}
+@if (signInManager.IsSignedIn(User))
+{
+	
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4 class="">Assignment List</h4>
+@if (signInManager.IsSignedIn(User)) {
+	<a asp-controller="Assignment" asp-action="Create" class="btn btn-added float-end btn-info mb-3"><img src="/images/plus.svg" alt="img">Add New Assignment</a>
+	<p>Manage Your Assignments</p>
+}
+
+<div class="text-center">
+
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>Assignment Title</th>
+			<th>Assignment Description</th>
+			<th>Assignment DeadLine</th>
+			<th>Group</th>
+
+			<th></th>
+		</tr>
+		 @foreach (var assignment in Model)
+		{
+			<tr>
+				<td class="">@assignment.Title</td>
+				<td>@assignment.Description</td>
+				<td>@assignment.Deadline</td>
+				<td>@assignment.Group.Title</td>
+
+				<td>
+					<a class="btn btn-primary" asp-action="Edit" asp-route-id="@assignment.Id">Edit</a>
+					<a class="btn btn-danger" asp-action="Delete" asp-route-id="@assignment.Id">Delete</a>
+				</td>
+			</tr>
+
+		} 
+	</table>
+</div>
+ئ
