@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity
+@{
+    ViewData["Title"] = "Reports";
+}
+@inject SignInManager<IdentityUser> signInManager
+
+@if (signInManager.IsSignedIn(User))
+{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Reports</h1>
+
+    <!-- Filters Section -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Search by title" />
+        </div>
+        <div class="col-md-4">
+            <select class="form-select">
+                <option value="">Filter by category</option>
+                <option value="finance">Finance</option>
+                <option value="academic">Academic</option>
+                <option value="general">General</option>
+            </select>
+        </div>
+        <div class="col-md-4 text-end">
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+
+    <!-- Reports Table -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Financial Report Q1</td>
+                <td>Finance</td>
+                <td>2024-01-15</td>
+                <td>
+                    <button class="btn btn-sm btn-info">View</button>
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </td>
+            </tr>
+            <!-- Repeat rows dynamically -->
+        </tbody>
+    </table>
+</div>

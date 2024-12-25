@@ -1,22 +1,138 @@
+/*  Õ”Ì‰ ÕÃ„ «·Œÿ */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
+/* ≈⁄œ«œ«  ⁄«„… ··’›Õ… */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/*  ’„Ì„ «·‘—Ìÿ «·Ã«‰»Ì (sidenav) */
+.sidenav {
+    background-color: #343a40;
+    color: white;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+    .sidenav a {
+        padding: 8px 16px;
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        color: #ccc;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .sidenav a:hover {
+            color: white;
+            background-color: #007bff;
+        }
+
+/*  ’„Ì„ «·ﬂ—Ê  «·≈Õ’«∆Ì… */
+.stats-card {
+    background: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+    .stats-card i {
+        font-size: 2rem;
+        color: #ff6f00;
+        margin-bottom: 10px;
+    }
+
+    .stats-card h4, .stats-card p {
+        margin: 0;
+        font-weight: 600;
+    }
+
+/* Ê÷⁄ œ«ﬂ‰ */
+body.dark-mode .stats-card {
+    background-color: #212529;
+    color: white;
+}
+
+    body.dark-mode .stats-card i {
+        color: #ff6f00;
+    }
+
+/*  Õ”Ì‰ «·«” Ã«»… ⁄·Ï «·‘«‘«  «·’€Ì—… */
+@media (max-width: 768px) {
+    .stats-card {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .sidenav {
+        width: 200px;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 10px;
+    }
+}
+
+/*  √ÀÌ—«   ÕÊÌ„ ⁄·Ï «·ﬂ—Ê  */
+.stats-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/*  Õ—Ìﬂ «·√“—«— ⁄‰œ «· ÕÊÌ„ */
+.btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/*  Õ”Ì‰ «·√“—«— */
+.btn-primary {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+.btn-dark-mode {
+    background-color: #212529;
+    color: white;
+    border: none;
+}
+
+    .btn-dark-mode:hover {
+        background-color: #333;
+    }
+
+/* ≈÷«›…  √ÀÌ—«  «· ›«⁄· ⁄·Ï «·—Ê«»ÿ */
+.sidenav a:active, .sidenav a:focus {
+    background-color: #0069d9;
+    color: white;
 }
