@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+@{
+    ViewData["Title"] = "Navigation";
+}
+@if (signInManager.IsSignedIn(User))
+{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container mt-4">
+    <h1 class="mb-4">Notifications</h1>
+
+    <!-- Notifications List -->
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="fas fa-info-circle text-primary"></i> Your assignment has been graded.</span>
+            <small class="text-muted">5 hours ago</small>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="fas fa-bell text-warning"></i> New system notification available.</span>
+            <small class="text-muted">1 day ago</small>
+        </li>
+        <!-- Repeat dynamically -->
+    </ul>
+</div>

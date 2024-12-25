@@ -1,90 +1,115 @@
 ﻿<!DOCTYPE html>
-<html>
-    @using Microsoft.AspNetCore.Identity;
-    @inject SignInManager<IdentityUser> signInManager
+<html lang="en">
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> signInManager
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BooksLibrary.styles.css" asp-append-version="true" />
-    <title> Admin Dashboard</title>
-   
+    <title>Admin Dashboard</title>
 </head>
-<style>
-    body {
-        display: flex;
-        margin: 0;
-        height: 100vh;
-    }
-
-    .sidenav {
-        background-color: #f1f1f1;
-        height: 100%;
-        width: 150px;
-        position: fixed;
-        z-index: 1;
-        overflow-x: hidden;
-        padding-top: 20px;
-    }
-
-        .sidenav a {
-            padding: 6px 8px 6px 16px;
-            text-decoration: none;
-            font-size: 20px;
-            display: block;
-        }
-
-            .sidenav a:hover {
-                color: white;
-                background-color: dodgerblue;
-            }
-
-    .main {
-        margin-left: 300px;
-        padding: 20px;
-        height: 100%;
-    }
-</style>
 <body>
 
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light sidenav" style="width: 280px;">
-        <span class="fs-4 text-center">Dashboard</span>
+    <!-- الشريط الجانبي -->
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark sidenav">
+        <span class="fs-4 text-center text-white">Dashboard</span>
 
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                <a asp-controller="Student" asp-action="GetAllStudents" class="nav-link link-dark" aria-current="page">
-                        <svg class="bi me-2" width="16" height="16"></svg>
-                        Students
-                    </a>
-                </li>
-                <li>
-                <a asp-controller="Assignment" asp-action="GetAllAssignments" class="nav-link link-dark">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table" /></svg>
-                        Assignments
-                    </a>
-                </li>
-            </ul>
-            <hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-               <strong>@User?.Identity?.Name</strong>
+        <hr class="text-white">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a asp-controller="Student" asp-action="GetAllStudents" class="nav-link link-dark">
+                    <i class="fas fa-users"></i> Students
                 </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
-                </li>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Assignment" asp-action="GetAllAssignments" class="nav-link link-dark">
+                    <i class="fas fa-tasks"></i> Assignments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Reports" asp-action="Index" class="nav-link link-dark">
+                    <i class="fas fa-chart-line"></i> Reports
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Massege" asp-action="Inbox" class="nav-link link-dark">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Navigation" asp-action="List" class="nav-link link-dark">
+                    <i class="fas fa-bell"></i> Notifications
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Settings" asp-action="Index" class="nav-link link-dark">
+                    <i class="fas fa-cogs"></i> Settings
+                </a>
+            </li>
+        </ul>
 
+        <hr class="text-white">
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <strong>@User?.Identity?.Name</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                 <li><a class="dropdown-item" asp-action="ChangePassword" asp-controller="Account">Change Password</a></li>
-                    <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" asp-action="Register" asp-controller="Account">Register</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" asp-action="Logout" asp-controller="Account">Log out</a></li>
-                </ul>
+            </ul>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="container main">
+
+        <!-- شريط البحث -->
+        <div class="row mt-3 mb-4">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </div>
             </div>
         </div>
 
-    <div class="container main bg-white">
-        <main role="main" class="pb-3">
+        <!-- الأزرار العلوية -->
+        <div class="row mb-4">
+            <div class="col-md-12 text-end">
+                <button class="btn btn-success me-2">Add New</button>
+                <button class="btn btn-danger">Delete Selected</button>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Total Students</h4>
+                    <p id="total-students">150</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <i class="fas fa-tasks"></i>
+                    <h4>Pending Assignments</h4>
+                    <p id="pending-assignments">45</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h4>Total Teachers</h4>
+                    <p id="total-teachers">25</p>
+                </div>
+            </div>
+        </div>
+
+        <main role="main">
             @RenderBody()
         </main>
     </div>
